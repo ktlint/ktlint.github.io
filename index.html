@@ -80,12 +80,14 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sL https://github.com/shyiko/ktlint/releases/download/0.6.2/ktlint > ktlint &amp;&amp; chmod a+x ktlint
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.6.2/ktlint &amp;&amp; chmod a+x ktlint
 # you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
 # another option is "brew install shyiko/ktlint/ktlint"
 
 # verify PGP signature (optional but recommended)
-curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import && gpg --verify ktlint.asc</code></pre>
+curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
+curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.6.2/ktlint.asc
+gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
               <h2 class="mdl-typography--headline mdl-typography--subhead">Usage</h2>
