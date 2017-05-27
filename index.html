@@ -1,0 +1,631 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="An anti-bikeshedding Kotlin linter with built-in formatter.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>ktlint</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,thin,light,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/themes/prism.min.css">
+
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.min.css">
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header docs-layout mdl-layout--no-desktop-drawer-button">
+
+      <!-- header -->
+
+      <div class="ktlint-header mdl-layout__header mdl-layout__header--waterfall mdl-layout__header--waterfall-hide-top">
+        <div class="mdl-layout__header-row">
+          <span class="ktlint-pn ktlint-title mdl-layout-title">ktlint</span>
+          <div class="ktlint-header-spacer mdl-layout-spacer"></div>
+          <div class="ktlint-navigation-container">
+            <nav class="ktlint-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#getting-started">Getting Started</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#rules">Rules</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#faq">FAQ</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://github.com/shyiko/ktlint">GitHub</a>
+            </nav>
+          </div>
+        </div>
+      </div>
+
+      <!-- header/drawer -->
+
+      <div class="ktlint-drawer mdl-layout__drawer">
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
+          <a class="mdl-navigation__link" href="#rules">Rules</a>
+          <a class="mdl-navigation__link" href="#faq">FAQ</a>
+          <a class="mdl-navigation__link" href="https://github.com/shyiko/ktlint">GitHub</a>
+        </nav>
+      </div>
+
+      <!-- welcome -->
+
+      <div class="mdl-layout__content">
+        <a name="top"></a>
+        <div class="ktlint-be-together-section mdl-typography--text-center">
+          <div class="logo-font ktlint-slogan">
+            <span class="ktlint-pn ktlint-slogn--box">ktlint</span>
+          </div>
+          <div class="logo-font ktlint-sub-slogan">An anti-bikeshedding Kotlin linter with built-in formatter.</div>
+        </div>
+
+        <!-- getting-started -->
+
+        <div id="getting-started" class="ktlint-screen-section getting-started-section mdl-typography--text-center">
+          <div class="mdl-typography--display-1-color-contrast ktlint-category">Getting Started</div>
+          <div class="ktlint-content">
+
+            <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+            
+              <!-- getting-started/tabs -->
+
+              <div class="mdl-tabs__tab-bar ktlint-getting-started">
+                  <a href="#command-line" class="mdl-tabs__tab is-active">Command Line</a>
+                  <a href="#maven" class="mdl-tabs__tab">Maven</a>
+                  <a href="#gradle" class="mdl-tabs__tab">Gradle</a>
+              </div>
+
+              <!-- getting-started/command-line tab -->
+
+              <div class="mdl-tabs__panel is-active mdl-typography--text-left" id="command-line">
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-bash">curl -sL https://github.com/shyiko/ktlint/releases/download/0.6.2/ktlint > ktlint &amp;&amp; chmod a+x ktlint
+# you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
+# another option is "brew install shyiko/ktlint/ktlint"
+
+# verify PGP signature (optional but recommended)
+curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import && gpg --verify ktlint.asc</code></pre>
+                  </div>                  
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Usage</h2>
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-bash"># check the style of all Kotlin files inside the current dir (recursively)
+# (hidden folders will be skipped)
+$ ktlint
+  src/main/kotlin/Main.kt:10:10: Unused import
+  
+# check only certain locations (prepend ! to negate the pattern) 
+$ ktlint "src/**/*.kt" "!src/**/*Test.kt"
+
+# auto-correct style violations
+# (if some errors cannot be fixed automatically they will be printed to stderr) 
+$ ktlint -F "src/**/*.kt"</code></pre>
+                  </div>                  
+                    
+              </div>
+
+              <!-- getting-started/maven tab -->
+              
+              <div class="mdl-tabs__panel mdl-typography--text-left" id="maven">
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Integration</h2>
+
+              <p>Add the following snippet to pom.xml (inside <span style="color: slategray">&lt;build&gt;&lt;plugins&gt...&lt;/plugins&gt&lt/build&gt</span>)
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-markup">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+    &lt;version&gt;1.7&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;id&gt;ktlint&lt;/id&gt;
+            &lt;phase&gt;verify&lt;/phase&gt;
+            &lt;configuration&gt;
+            &lt;target name=&quot;ktlint&quot;&gt;
+                &lt;java taskname=&quot;ktlint&quot; dir=&quot;${basedir}&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;
+                    classname=&quot;com.github.shyiko.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
+                    &lt;arg value=&quot;src/**/*.kt&quot;/&gt;
+                &lt;/java&gt;
+            &lt;/target&gt;
+            &lt;/configuration&gt;
+            &lt;goals&gt;&lt;goal&gt;run&lt;/goal&gt;&lt;/goals&gt;
+        &lt;/execution&gt;
+        &lt;execution&gt;
+            &lt;id&gt;ktlint-format&lt;/id&gt;
+            &lt;configuration&gt;
+            &lt;target name=&quot;ktlint&quot;&gt;
+                &lt;java taskname=&quot;ktlint&quot; dir=&quot;${basedir}&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;
+                    classname=&quot;com.github.shyiko.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
+                    &lt;arg value=&quot;-F&quot;/&gt;
+                    &lt;arg value=&quot;src/**/*.kt&quot;/&gt;
+                &lt;/java&gt;
+            &lt;/target&gt;
+            &lt;/configuration&gt;
+            &lt;goals&gt;&lt;goal&gt;run&lt;/goal&gt;&lt;/goals&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.shyiko&lt;/groupId&gt;
+            &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
+            &lt;version&gt;0.6.2&lt;/version&gt;
+        &lt;/dependency&gt;
+        &lt;!-- additional 3rd party ruleset(s) can be specified here --&gt;
+    &lt;/dependencies&gt;
+&lt;/plugin&gt;</code></pre>
+                  </div>
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Usage</h2>
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-bash"># check code style (it's also bound to "mvn verify")
+$ mvn antrun:run@ktlint 
+  src/main/kotlin/Main.kt:10:10: Unused import
+  
+# fix code style deviations (runs built-in formatter)
+$ mvn antrun:run@ktlint-format</code></pre>
+                  </div>                  
+
+              </div>
+
+              <!-- getting-started/gradle tab -->
+              
+              <div class="mdl-tabs__panel mdl-typography--text-left" id="gradle">
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Integration</h2>
+
+              <p>Add the following snippet to build.gradle
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-groovy">apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    ktlint
+}
+
+dependencies {
+    ktlint 'com.github.shyiko:ktlint:0.6.2'
+    // additional 3rd party ruleset(s) can be specified here
+    // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
+    // ktlint will pick them up
+}
+
+task ktlint(type: JavaExec) {
+    main = &quot;com.github.shyiko.ktlint.Main&quot;
+    classpath = configurations.ktlint
+    args &quot;src/**/*.kt&quot;
+}
+
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec) {
+    main = &quot;com.github.shyiko.ktlint.Main&quot;
+    classpath = configurations.ktlint
+    args &quot;-F&quot;, &quot;src/**/*.kt&quot;
+}</code></pre>
+                  </div>
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Usage</h2>
+
+                  <div class="snippet-code">
+                    <pre><code class=" language-bash"># check code style (it's also bound to "gradle check")
+$ gradle ktlint
+  src/main/kotlin/Main.kt:10:10: Unused import
+  
+# fix code style deviations (runs built-in formatter)
+$ gradle ktlintFormat</code></pre>
+                  </div>                  
+
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Alternatives</h2>
+              
+              <p>There are few community-driven plugins that you might find interesting:
+
+              <ul class="mdl-list">
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/jlleitschuh/ktlint-gradle">jlleitschuh/ktlint-gradle</a></span>
+                    <span class="mdl-list__item-sub-title">
+                      The very first ktlint gradle plugin.
+                    </span>
+                  </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/jeremymailen/kotlinter-gradle">jeremymailen/kotlinter-gradle</a></span>
+                    <span class="mdl-list__item-sub-title">
+                      Gradle plugin featuring incremental build support, file reports, .kt &amp; .kts source support, etc.
+                    </span>
+                  </span>
+                </li>
+                <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/diffplug/spotless/tree/master/plugin-gradle#applying-ktlint-to-kotlin-files">diffplug/spotless</a></span>
+                    <span class="mdl-list__item-sub-title">
+Spotless is not really a plugin, it's a standalone project that happens to have a built-in ktlint support.
+In addition to linting/formatting kotlin code it allows you to keep license headers, markdown documentation, etc. in check.
+                    </span>
+                  </span>
+                </li>
+              </ul>  
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- rules -->
+
+        <div id="rules" class="ktlint-screen-section">
+          <div class="mdl-typography--display-1-color-contrast mdl-typography--text-center ktlint-category">Rules</div>
+          <div class="ktlint-content">
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-indentation">4 spaces for indentation.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">// recommended
+// see https://github.com/shyiko/ktlint/issues/26#issuecomment-275810153                    
+data class C(
+    val a: Any, 
+    val b: Any = 0,
+    val c: Any
+) {}
+
+// even though there are 13 spaces to the left from "val b" and "val c", 
+// this is still OK
+data class C(val a: Any, 
+             val b: Any = 0,
+             val c: Any) {
+
+}</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">fun f(val a: Any,
+        val b: Any = 0,
+      val c: Any) {}</code></pre>
+                  </div>
+                  <p style="font-size: 14px; text-align: left; color: slategray;">
+                    * I wish JetBrains would have picked 2 spaces indentation too, but they haven't. Let's not split the community.
+                  </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-semi">No semicolons.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">val v = ""
+println(v)
+
+// semicolons used to separate multiple statements on the same line are OK
+// try avoid though
+fn({ v -> println(v); v * 10 })</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">val v = "";
+println(v);</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-import">No wildcard / unused imports.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">import io.vertx.core.Vertx
+import com.google.Guice
+import com.google.Injector</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">import io.vertx.core.*
+import com.google.inject.*
+import pkg.UnusedClass
+</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-blank">No consecutive blank lines.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">class A {}
+class B {}
+</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">// this in not a Python and you are not in PEP 8 realm
+class A {}
+
+
+class B {}
+</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-trailing-whitespaces">No trailing whitespaces.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">class A {}
+class B {}</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">class A {}&sdot;&sdot;&sdot;
+class B {}&sdot;</code></pre>
+                  </div>
+                <p style="font-size: 14px; text-align: left; color: slategray;">
+                  * If you don't use <a href="http://editorconfig.org/#download">EditorConfig</a> it's a good time to start.
+                </p>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#spacing">Consistent spacing.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">val short = ""
+val long = ""
+
+val v = a - b * c
+
+class A : B, C {}
+
+if (true) {}
+
+@file:JvmName("Main")
+class A : B
+call(object : C() {})
+fun fn(@field:F a: Any, b: Any, c: Any): Any
+val v: String = str()
+
+if (ok) { /* .. */ }
+fn({ v -> f(v) * g(v) })
+emptyList<String>().find { true }!!.hashCode()
+find { it.default ?: false }?.phone</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">// multiple spaces after "val long" for vertical alignment
+val short = ""
+val long  = ""
+
+// no spacing around operators
+val v=a-b*c
+
+// no comma after ","
+class A : B,C {}
+
+// no spacing after keyword ("if" in this case)
+if(true) {}
+
+// incorrect spacing around ":""
+@file: JvmName("Main")
+class A:B
+call(object: C() {})
+fun fn(@field: F a:Any, b:Any, c:Any):Any
+val v:String = str()
+
+// missing spacing around "{" and before "}"
+if (true){/* .. */}
+// missing spacing after "{" and before "}"
+fn({v -> f(v) * g(v)}!!)
+// unnecessary space after "}"
+emptyList<String>().find { true } !!.hashCode()
+find { it.default ?: false } ?.phone</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+        <!-- faq -->
+
+        <div id="faq" class="ktlint-screen-section faq-section">
+          <div class="mdl-typography--display-1-color-contrast mdl-typography--text-center ktlint-category">FAQ</div>
+          <div class="ktlint-content">
+
+        <!-- faq/why  -->
+
+              <h2 id="faq-why" class="faq-q mdl-typography--headline mdl-typography--subhead"><i class="material-icons faq-icon">fiber_manual_record</i><a class="faq-q--link" href="#faq-why">Why should I use ktlint?</a></h2>
+              <div class="faq-a">
+              <p>
+<strong>Simplicity</strong>. 
+
+<p>Spending time on configuration (&amp; maintenance down the road) hundred-line long style config file(s) is counter-productive. 
+Instead of wasting your energy on something that has no business value - focus on what really matters (not debating whether to use 
+tabs or spaces). 
+
+<p>By using ktlint you put the importance of code clarity and community conventions over personal preferences.
+This makes things easiers for people reading your code as well as freeing you from having to document &amp;
+explain what style potential contributor(s) have to follow.
+
+<p>ktlint is a single binary with both linter & formatter included. All you need is to drop it in (not need to
+get <a href="https://en.wikipedia.org/wiki/decision_fatigue">overwhelmed</a> while choosing 
+among <a href="http://checkstyle.sourceforge.net/checks.html">dozens of code style options</a>).
+              </div>
+
+        <!-- faq/ruleset  -->
+              
+              <h2 id="faq-ruleset" class="faq-q mdl-typography--headline mdl-typography--subhead"><i class="material-icons faq-icon">fiber_manual_record</i><a class="faq-q--link" href="#faq-ruleset">Can I have my own rules on top of ktlint?</a></h2>
+              <div class="faq-a">
+              <p>Absolutely, "no configuration" doesn't mean "no extensibility". You can add your own ruleset(s) to discover potential bugs, check for anti-patterns, etc. 
+              <p>See <a href="https://github.com/shyiko/ktlint#creating-a-ruleset">Creating A Ruleset</a> on GitHub.
+              <p>Once packaged in a JAR you can load it with
+
+                  <div class="snippet-code">
+                    <pre><code class="language-bash"># enable additional 3rd party ruleset by pointing ktlint to its location on the file system
+$ ktlint -R /path/to/custom/rulseset.jar "src/test/**/*.kt"
+
+# you can also use <groupId>:<artifactId>:<version> triple in which case artifact is
+# downloaded from Maven Central, JCenter or JitPack (depending on where it's located and 
+# whether or not it's already present in local Maven cache)
+$ ktlint -R com.github.username:rulseset:master-SNAPSHOT</code></pre>
+                  </div>
+              </div>
+              
+        <!-- faq/error-suppression  -->
+              
+              <h2 id="faq-error-suppression" class="faq-q mdl-typography--headline mdl-typography--subhead"><i class="material-icons faq-icon">fiber_manual_record</i><a class="faq-q--link" href="#faq-error-suppression">How do I suppress an error?</a></h2>
+              <div class="faq-a">
+              <p style="color: slategray;">
+              This is meant primarily as an escape latch for the rare cases when ktlint is not able to produce the correct result (please report any such instances using <a href="https://github.com/shyiko/ktlint/issues">GitHub Issues</a>).
+              <p>To disable a specific rule you'll need to turn on the verbose mode (ktlint --verbose ...). At the end of each line you'll see an error code. Use it as an argument for ktlint-disable directive (shown below).
+                  <div class="snippet-code">
+                    <pre><code class="language-kotlin">import package.* // ktlint-disable no-wildcard-imports
+
+/* ktlint-disable no-wildcard-imports */
+import package.a.*
+import package.b.*
+/* ktlint-enable no-wildcard-imports */</code></pre>
+                  </div>
+
+<p>To disable all checks:
+
+                  <div class="snippet-code">
+                    <pre><code class="language-kotlin">import package.* // ktlint-disable</code></pre>
+                  </div>
+              </div>
+        </div>
+
+      </div>
+
+    <footer class="mdl-mini-footer ktlint-footer">
+      <div class="mdl-mini-footer__left-section">
+        <div class="mdl-logo"><i class="material-icons">favorite</i></div>
+        <!--<ul class="mdl-mini-footer__link-list">
+          <li><a href="#">Help</a></li>
+          <li><a href="#">Privacy & Terms</a></li>
+        </ul>-->
+      </div>
+    </footer>
+
+    </div>
+
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-kotlin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-markup.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.6.0/components/prism-groovy.min.js"></script>
+
+  </body>
+</html>

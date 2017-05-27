@@ -1,0 +1,449 @@
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.ktlint-header {
+  overflow: visible;
+  background-color: white;
+}
+
+  .ktlint-header .material-icons {
+    color: #767777 !important;
+  }
+
+  .ktlint-header .mdl-layout__drawer-button {
+    background: transparent;
+    color: #767777;
+  }
+
+  .ktlint-header .mdl-navigation__link {
+    color: #757575;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .ktlint-navigation-container {
+    /* Simple hack to make the overflow happen to the left instead... */
+    direction: rtl;
+    -webkit-order: 1;
+        -ms-flex-order: 1;
+            order: 1;
+    width: 500px;
+    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+        width 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .ktlint-navigation {
+    /* ... and now make sure the content is actually LTR */
+    direction: ltr;
+    -webkit-justify-content: flex-end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    width: 800px;
+  }
+
+  .ktlint-navigation .mdl-navigation__link {
+    display: inline-block;
+    height: 60px;
+    line-height: 68px;
+    background-color: transparent !important;
+    border-bottom: 4px solid transparent;
+  }
+
+    .ktlint-navigation .mdl-navigation__link:hover {
+      border-bottom: 4px solid #CFD8DC;
+      /*border-bottom: 4px solid #00BCD4;*/
+    }
+
+  .ktlint-more-button {
+    -webkit-order: 3;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+
+
+.ktlint-drawer {
+  border-right: none;
+}
+
+  .ktlint-drawer-separator {
+    height: 1px;
+    background-color: #dcdcdc;
+    margin: 8px 0;
+  }
+
+  .ktlint-drawer .mdl-navigation__link.mdl-navigation__link {
+    font-size: 14px;
+    color: #757575;
+  }
+
+  .ktlint-drawer span.mdl-navigation__link.mdl-navigation__link {
+    color: #8bc34a;
+  }
+
+  .ktlint-drawer .mdl-layout-title {
+    position: relative;
+    background: #6ab344;
+    /*background: #6ab344;*/
+    height: 160px;
+  }
+
+    .ktlint-drawer .ktlint-logo-image {
+      position: absolute;
+      bottom: 16px;
+    }
+
+.ktlint-be-together-section {
+  position: relative;
+  height: 800px;
+  height: calc(100vh - 64px);
+  width: auto;
+  /*background-color: #f3f3f3;*/
+  /*background: url('images/slide01.jpg') center 30% no-repeat;*/
+  /*background-size: cover;*/
+}
+
+.logo-font {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  line-height: 1;
+  color: #767777;
+  font-weight: 500;
+}
+
+.ktlint-slogan {
+  font-size: 60px;
+  /*padding-top: 160px;*/
+  padding-top: 260px;
+}
+
+.ktlint-slogn--box {
+  background-color: #767777;
+  /*padding: 10px 30px;*/
+  padding: 10px 20px;
+  color: #fff;
+}
+
+.ktlint-sub-slogan {
+  font-size: 21px;
+  /*padding-top: 24px;*/
+  padding-top: 34px;
+  /* custom */
+  font-weight: 300;
+}
+
+.ktlint-screen-section {
+  position: relative;
+  padding-top: 60px;
+  padding-bottom: 80px;
+}
+
+/* snippet */
+
+.docs-layout .docs-text-styling pre[class*=language-markup] {
+    max-width: calc(100vw - 32px)
+}
+
+.docs-layout pre[class*=language-markup] {
+    max-width: 100vw;
+    box-sizing: border-box;
+    overflow: hidden
+}
+
+.docs-layout pre[class*=language-markup].codepen-button-enabled {
+    padding-right: 0
+}
+
+.docs-layout pre[class*=language-markup].codepen-button-enabled code {
+    padding-right: 50px
+}
+
+.codepen-button-enabled .codepen-button {
+    display: inline-block
+}
+
+.token.attr-name,.token.builtin,.token.selector,.token.string {
+    color: #009688
+}
+
+.token.boolean,.token.constant,.token.number,.token.property,.token.symbol,.token.tag {
+    color: #3F51B5
+}
+
+.token.atrule,.token.attr-value,.token.keyword {
+    color: #2196F3
+}
+
+.docs-layout code,.docs-layout pre {
+    display: inline-block;
+    background-color: rgba(0,0,0,.06);
+    border-radius: 3px;
+    white-space: pre-wrap
+}
+
+.docs-layout pre {
+    padding: 16px;
+    font-size: 87%;
+    box-sizing: border-box
+}
+
+@media (max-width: 900px) {
+  .docs-layout pre {
+    font-size: 100%;
+  }
+}
+
+.docs-layout code:before,.docs-layout code:after {
+    letter-spacing: -.2em;
+    content: "\00a0"
+}
+
+.docs-layout pre>code:before,.docs-layout pre>code:after {
+    letter-spacing: 0;
+    content: ""
+}
+
+.docs-layout pre>code {
+    background-color: rgba(0,0,0,0);
+    padding: 0;
+    font-size: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    word-break: break-word
+}
+
+.docs-layout pre[class*=language-]>code[data-language] {
+    overflow: hidden
+}
+
+pre[class*=language-]>code[data-language]::before {
+    content: "";
+    background: 0 0
+}
+
+.token.cr:before,.token.lf:before {
+    display: none
+}
+
+.language-css .token.string,.style .token.string,.token.entity,.token.operator,.token.url,.token.variable {
+    color: #607D8B;
+    background: 0 0
+}
+
+code[class*=language-],pre[class*=language-] {
+    color: rgba(0,0,0,.87);
+    text-shadow: none
+}
+
+.token.function {
+    color: #009688
+}
+
+.docs-toc ul {
+    border-left: solid 3px #C0EbF1;
+    padding-left: 20px;
+    line-height: 28px
+}
+
+.docs-toc a {
+    font-weight: 400;
+    color: #00BCD4
+}
+
+.docs-toc li {
+    font-size: 16px;
+    list-style: none
+}
+
+/* mobile */
+
+@media (max-width: 900px) {
+  .ktlint-navigation-container {
+    display: none;
+  }
+  .ktlint-slogan {
+    /* 80% of default */
+    padding-top: 208px;
+  }
+  .title {
+    /* 80% of default */
+    font-size: 48px; 
+    padding: 8px 24px;
+  }
+}
+
+/* misc */
+
+.ktlint-title {
+  /*background-color: #767777;*/
+  padding: 5px 10px;
+  /*padding: 3px 10px;*/
+  color: #fff;
+  font-weight: 500;
+}
+
+
+.ktlint-getting-started {
+  border: none;
+  margin-bottom: 10px;
+}
+
+.ktlint-category {
+  margin: 40px auto;
+}
+
+.ktlint-content {
+  max-width: 888px;
+  /*max-width: 960px;*/
+  margin: 0 auto;
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+  color:#B0BEC5;
+  /*color: #00ACC1;*/
+}
+
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:after {
+    background-color: #B0BEC5;
+    /*background-color: #00ACC1;*/
+}
+
+.mdl-tabs__tab .mdl-tabs__ripple-container .mdl-ripple {
+  background: #B0BEC5;
+  /*background: #00BCD4;*/
+}
+
+.mdl-tabs__tab {
+  font-weight: 500;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #607D8B;
+  font-weight: 400;
+  /*font-weight: 500*/
+}
+
+.snippet-group .snippet-caption {
+  width: 50%;
+  padding-right: 10px;
+  padding-left: 0;
+}
+
+.snippet-good {
+  /*border-color: #4caf50;*/
+  color: #689F38;
+  /*color: #2e7b32;*/
+  /*font-weight: 500;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  color: red;*/
+  /*border-color: #4caf50;*/
+  /*border-bottom: 15px solid;*/
+}
+.snipper-code-good > pre {
+    border-left: 2px solid #AED581;
+    /*border-left: 2px solid #4caf50;;*/
+}
+.material-icons.good { color: #4caf50; }
+.material-icons.bad { color: #4caf50; }
+.snippet-bad {
+  margin-top: 8px;
+  /*color: #F44336;*/
+  color: #D32F2F;
+  /*color: #d32f2f;*/
+  /*border-color: #d32f2f;*/
+  /*border-bottom: 15px solid;*/
+}
+.snipper-code-bad > pre {
+    border-left: 2px solid #E57373;
+    /*border-left: 2px solid #d32f2f;;*/
+}
+.material-icons.good, .material-icons.bad {
+  display: none;
+}
+
+.snippet-hint {
+  /*display: inline-block;*/
+  top: -6px;
+  position: relative;
+  font-weight: bold;
+  /*margin-left: 10px;*/
+}
+
+code[class*=language-],pre[class*=language-] {
+  width: 100%;
+  background-color: #fafafa;
+}
+
+pre[class*=language-] {
+  padding-left: 24px;
+}
+
+.ktlint-content h3, .ktlint-content h4 {
+  display: table-cell;
+  /*font-size: 18px;*/
+  font-size: 15px;
+  /*padding-right: 60px;*/
+  line-height: 25px;
+  text-transform: none
+}
+
+.faq-section p, .faq-section ul {
+  font-size: 15px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.ktlint-be-together-section {
+  background: url(bg.png) no-repeat center center; 
+  /*background: linear-gradient( rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95) ), url(bg.jpg) no-repeat center center; */
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.ktlint-screen-section, .ktlint-be-together-section {
+  padding: 20px;
+}
+
+.faq-q {
+  /*margin-top: 48px;*/
+}
+/*.faq-q--link {
+  background-color: #767777;
+  color: white;
+ padding: 3px 10px;
+}
+*/
+/*
+.faq-q--link {
+  font-weight: 500;
+}
+*/
+.faq-icon {
+  font-size: 12px;
+  /*top: 6px;*/
+  position: relative;
+  margin-right: 6px;
+  color: #607D8B;
+}
+.ktlint-pn {
+  /*background-color: #546E7A;*/
+  /*background-color: #D81B60;*/
+  background-color: #FF4081;
+  /*background-color: #767777;*/
+}
+.ktlint-footer {
+  /*margin-top: 20px; */
+  background-color: #FFF;
+  justify-content: center;
+}
+.ktlint-footer .material-icons {
+  color: #FF4081;
+}
+.ktlint-footer .mdl-logo {
+  line-height: 20px;
+}
