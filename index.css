@@ -392,7 +392,7 @@ pre[class*=language-] {
   font-size: 15px;
 }
 
-a {
+h2 a, h3 a, .gradle-thirdparty-list a {
   text-decoration: none;
 }
 
@@ -410,7 +410,7 @@ a {
 }
 
 .faq-q {
-  /*margin-top: 48px;*/
+  margin-top: 48px;
 }
 /*.faq-q--link {
   background-color: #767777;
@@ -424,6 +424,7 @@ a {
 }
 */
 .faq-icon {
+  display: none;
   font-size: 12px;
   /*top: 6px;*/
   position: relative;
