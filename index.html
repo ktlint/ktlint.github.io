@@ -465,6 +465,90 @@ class B {}&sdot;</code></pre>
             <section>
               <div class="mdl-grid">
                 <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-blank">No Unit returns.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">fun f() {}</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">fun f(): Unit {}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-blank">Consistent order of modifiers.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">internal abstract class A {
+    protected open val v = ""
+    internal open suspend fun f(v: Any): Any = ""
+    public lateinit var lv: String
+    abstract tailrec fun findFixPoint(x: Double = 1.0): Double
+}
+
+class B : A() {
+    public override val v = ""
+    suspend override fun f(v: Any): Any = ""
+    tailrec override fun findFixPoint(x: Double): Double
+        = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
+}</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">abstract internal class A {
+    open protected val v = ""
+    open suspend internal fun f(v: Any): Any = ""
+    lateinit public var lv: String
+    tailrec abstract fun findFixPoint(x: Double = 1.0): Double
+}
+
+class B : A() {
+    override public val v = ""
+    override suspend fun f(v: Any): Any = ""
+    override tailrec fun findFixPoint(x: Double): Double
+        = if (x == Math.cos(x)) x else findFixPoint(Math.cos(x))
+}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
                   <h3><a href="#spacing">Consistent spacing.</a></h3>
                 </div>
                 <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
