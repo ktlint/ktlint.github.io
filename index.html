@@ -80,13 +80,13 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.8.1/ktlint &amp;&amp; chmod a+x ktlint
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.9.0/ktlint &amp;&amp; chmod a+x ktlint
 # you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
 # another option is "brew install shyiko/ktlint/ktlint"
 
 # verify PGP signature (optional but recommended)
 curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
-curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.8.1/ktlint.asc
+curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.9.0/ktlint.asc
 gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
@@ -103,7 +103,11 @@ $ ktlint "src/**/*.kt" "!src/**/*Test.kt"
 
 # auto-correct style violations
 # (if some errors cannot be fixed automatically they will be printed to stderr) 
-$ ktlint -F "src/**/*.kt"</code></pre>
+$ ktlint -F "src/**/*.kt"
+
+# use custom reporter
+$ ktlint --reporter=plain?group_by_file
+$ ktlint --reporter=checkstyle > ktlint-report-in-checkstyle-format.xml</code></pre>
                   </div>                  
                     
               </div>
@@ -153,7 +157,7 @@ $ ktlint -F "src/**/*.kt"</code></pre>
         &lt;dependency&gt;
             &lt;groupId&gt;com.github.shyiko&lt;/groupId&gt;
             &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
-            &lt;version&gt;0.8.1&lt;/version&gt;
+            &lt;version&gt;0.9.0&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;!-- additional 3rd party ruleset(s) can be specified here --&gt;
     &lt;/dependencies&gt;
@@ -193,7 +197,7 @@ configurations {
 }
 
 dependencies {
-    ktlint 'com.github.shyiko:ktlint:0.8.1'
+    ktlint 'com.github.shyiko:ktlint:0.9.0'
     // additional 3rd party ruleset(s) can be specified here
     // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
     // ktlint will pick them up
@@ -489,6 +493,70 @@ class B {}&sdot;</code></pre>
                   </div>
                   <div class="snippet-code snipper-code-bad">
                     <pre><code class="language-kotlin">fun f(): Unit {}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="rule-unit-return">
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-unit-return">No empty class bodies.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">class A
+interface B</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">class A {}
+interface B {}</code></pre>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="rule-unit-return">
+              <div class="mdl-grid">
+                <div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-phone">
+                  <h3><a href="#rule-unit-return">Consistent string templates.</a></h3>
+                </div>
+                <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-phone">
+                  <div class="snippet-header snippet-good">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Do.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-good">
+                    <pre><code class="language-kotlin">val a = "class = ${String::class}"
+val b = "not $a"</code></pre>
+                  </div>
+                  <div class="snippet-header snippet-bad">
+                    <div class="snippet-captions">
+                      <div class="snippet-caption">
+                        <span class="snippet-hint">Don't.</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="snippet-code snipper-code-bad">
+                    <pre><code class="language-kotlin">val a = "class = ${String::class.toString()}"
+val b = "not ${a}"</code></pre>
                   </div>
                 </div>
               </div>
