@@ -203,15 +203,16 @@ dependencies {
     // ktlint will pick them up
 }
 
-task ktlint(type: JavaExec) {
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
     main = &quot;com.github.shyiko.ktlint.Main&quot;
     classpath = configurations.ktlint
     args &quot;src/**/*.kt&quot;
 }
-
 check.dependsOn ktlint
 
-task ktlintFormat(type: JavaExec) {
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
     main = &quot;com.github.shyiko.ktlint.Main&quot;
     classpath = configurations.ktlint
     args &quot;-F&quot;, &quot;src/**/*.kt&quot;
