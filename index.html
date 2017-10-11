@@ -80,13 +80,13 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.9.0/ktlint &amp;&amp; chmod a+x ktlint
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.10.0/ktlint &amp;&amp; chmod a+x ktlint
 # you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
 # another option is "brew install shyiko/ktlint/ktlint"
 
 # verify PGP signature (optional but recommended)
 curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
-curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.9.0/ktlint.asc
+curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.10.0/ktlint.asc
 gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
@@ -105,9 +105,13 @@ $ ktlint "src/**/*.kt" "!src/**/*Test.kt"
 # (if some errors cannot be fixed automatically they will be printed to stderr) 
 $ ktlint -F "src/**/*.kt"
 
-# use custom reporter
+# print style violations grouped by file
 $ ktlint --reporter=plain?group_by_file
-$ ktlint --reporter=checkstyle > ktlint-report-in-checkstyle-format.xml</code></pre>
+# print style violations as usual + create report in checkstyle format 
+$ ktlint --reporter=plain --reporter=checkstyle,output=ktlint-report-in-checkstyle-format.xml
+
+# install git hook to automatically check files for style violations on commit
+$ ktlint --install-git-pre-commit-hook</code></pre>
                   </div>                  
                     
               </div>
@@ -134,6 +138,12 @@ $ ktlint --reporter=checkstyle > ktlint-report-in-checkstyle-format.xml</code></
                 &lt;java taskname=&quot;ktlint&quot; dir=&quot;${basedir}&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;
                     classname=&quot;com.github.shyiko.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
                     &lt;arg value=&quot;src/**/*.kt&quot;/&gt;
+                    &lt;!-- to generate report in checkstyle format prepend following args: --&gt;
+                    &lt;!-- 
+                    &lt;arg value=&quot;--reporter=plain&quot;/&gt;
+                    &lt;arg value=&quot;--reporter=checkstyle,output=${project.build.directory}/ktlint.xml&quot;/&gt;
+                    --&gt;
+                    &lt;!-- see https://github.com/shyiko/ktlint#usage for more --&gt;    
                 &lt;/java&gt;
             &lt;/target&gt;
             &lt;/configuration&gt;
@@ -157,7 +167,7 @@ $ ktlint --reporter=checkstyle > ktlint-report-in-checkstyle-format.xml</code></
         &lt;dependency&gt;
             &lt;groupId&gt;com.github.shyiko&lt;/groupId&gt;
             &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
-            &lt;version&gt;0.9.0&lt;/version&gt;
+            &lt;version&gt;0.10.0&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;!-- additional 3rd party ruleset(s) can be specified here --&gt;
     &lt;/dependencies&gt;
@@ -186,7 +196,7 @@ $ mvn antrun:run@ktlint-format</code></pre>
               <p>Add the following snippet to build.gradle
 
                   <div class="snippet-code">
-                    <pre><code class=" language-groovy">apply plugin: 'java'
+                    <pre><code class=" language-groovy">apply plugin: &quot;java&quot;
 
 repositories {
     mavenCentral()
@@ -197,7 +207,7 @@ configurations {
 }
 
 dependencies {
-    ktlint 'com.github.shyiko:ktlint:0.9.0'
+    ktlint &quot;com.github.shyiko:ktlint:0.10.0&quot;
     // additional 3rd party ruleset(s) can be specified here
     // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
     // ktlint will pick them up
@@ -208,6 +218,9 @@ task ktlint(type: JavaExec, group: "verification") {
     main = &quot;com.github.shyiko.ktlint.Main&quot;
     classpath = configurations.ktlint
     args &quot;src/**/*.kt&quot;
+    // to generate report in checkstyle format prepend following args:
+    // &quot;--reporter=plain&quot;, &quot;--reporter=checkstyle,output=${buildDir}/ktlint.xml&quot;
+    // see https://github.com/shyiko/ktlint#usage for more    
 }
 check.dependsOn ktlint
 
@@ -726,17 +739,6 @@ among <a href="http://checkstyle.sourceforge.net/checks.html">dozens of code sty
               <div class="faq-a">
               <p>Absolutely, "no configuration" doesn't mean "no extensibility". You can add your own ruleset(s) to discover potential bugs, check for anti-patterns, etc. 
               <p>See <a href="https://github.com/shyiko/ktlint#creating-a-ruleset">Creating A Ruleset</a> on GitHub.
-              <p>Once packaged in a JAR you can load it with
-
-                  <div class="snippet-code">
-                    <pre><code class="language-bash"># enable additional 3rd party ruleset by pointing ktlint to its location on the file system
-$ ktlint -R /path/to/custom/rulseset.jar "src/test/**/*.kt"
-
-# you can also use <groupId>:<artifactId>:<version> triple in which case artifact is
-# downloaded from Maven Central, JCenter or JitPack (depending on where it's located and 
-# whether or not it's already present in local Maven cache)
-$ ktlint -R com.github.username:rulseset:master-SNAPSHOT</code></pre>
-                  </div>
               </div>
               
         <!-- faq/error-suppression  -->
