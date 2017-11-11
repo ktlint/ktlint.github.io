@@ -80,13 +80,13 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.11.1/ktlint &amp;&amp; chmod a+x ktlint
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.12.0/ktlint &amp;&amp; chmod a+x ktlint
 # you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
 # another option is "brew install shyiko/ktlint/ktlint"
 
 # verify PGP signature (optional but recommended)
 curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
-curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.11.1/ktlint.asc
+curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.12.0/ktlint.asc
 gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
@@ -167,7 +167,7 @@ $ ktlint --install-git-pre-commit-hook</code></pre>
         &lt;dependency&gt;
             &lt;groupId&gt;com.github.shyiko&lt;/groupId&gt;
             &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
-            &lt;version&gt;0.11.1&lt;/version&gt;
+            &lt;version&gt;0.12.0&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;!-- additional 3rd party ruleset(s) can be specified here --&gt;
     &lt;/dependencies&gt;
@@ -207,7 +207,7 @@ configurations {
 }
 
 dependencies {
-    ktlint &quot;com.github.shyiko:ktlint:0.11.1&quot;
+    ktlint &quot;com.github.shyiko:ktlint:0.12.0&quot;
     // additional 3rd party ruleset(s) can be specified here
     // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
     // ktlint will pick them up
