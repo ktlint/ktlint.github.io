@@ -302,21 +302,12 @@ In addition to linting/formatting kotlin code it allows you to keep license head
                     </div>
                   </div>
                   <div class="snippet-code snipper-code-good">
-                    <pre><code class="language-kotlin">// recommended
-// see https://github.com/shyiko/ktlint/issues/26#issuecomment-275810153                    
-data class C(
+                    <pre><code class="language-kotlin">data class C(
     val a: Any, 
     val b: Any = 0,
     val c: Any
 ) {}
-
-// even though there are 13 spaces to the left from "val b" and "val c", 
-// this is still OK
-data class C(val a: Any, 
-             val b: Any = 0,
-             val c: Any) {
-
-}</code></pre>
+</code></pre>
                   </div>
                   <div class="snippet-header snippet-bad">
                     <div class="snippet-captions">
@@ -326,9 +317,10 @@ data class C(val a: Any,
                     </div>
                   </div>
                   <div class="snippet-code snipper-code-bad">
-                    <pre><code class="language-kotlin">fun f(val a: Any,
-        val b: Any = 0,
-      val c: Any) {}</code></pre>
+                    <pre><code class="language-kotlin">data class C(val a: Any, 
+             val b: Any = 0,
+             val c: Any) {
+}</code></pre>
                   </div>
                   <p style="font-size: 14px; text-align: left; color: slategray;">
                     * Starting from <a href="https://github.com/shyiko/ktlint/releases/tag/0.8.0">0.8.0</a> value of indent_size specified under 
