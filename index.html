@@ -29,7 +29,7 @@
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#getting-started">Getting Started</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#rules">Rules</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="#faq">FAQ</a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://github.com/shyiko/ktlint">GitHub</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="https://github.com/pinterest/ktlint">GitHub</a>
             </nav>
           </div>
         </div>
@@ -42,7 +42,7 @@
           <a class="mdl-navigation__link" href="#getting-started">Getting Started</a>
           <a class="mdl-navigation__link" href="#rules">Rules</a>
           <a class="mdl-navigation__link" href="#faq">FAQ</a>
-          <a class="mdl-navigation__link" href="https://github.com/shyiko/ktlint">GitHub</a>
+          <a class="mdl-navigation__link" href="https://github.com/pinterest/ktlint">GitHub</a>
         </nav>
       </div>
 
@@ -80,13 +80,13 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.31.0/ktlint &amp;&amp; chmod a+x ktlint
-# you can also download ktlint manually from https://github.com/shyiko/ktlint/releases
-# another option is "brew install shyiko/ktlint/ktlint"
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.32.0/ktlint &amp;&amp; chmod a+x ktlint
+# you can also download ktlint manually from https://github.com/pinterest/ktlint/releases
+# another option is "brew install ktlint"
 
 # verify PGP signature (optional but recommended)
-curl -sS https://keybase.io/shyiko/pgp_keys.asc | gpg --import
-curl -sSLO https://github.com/shyiko/ktlint/releases/download/0.31.0/ktlint.asc
+curl -sS https://keybase.io/pinterestandroid/pgp_keys.asc | gpg --import
+curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.32.0/ktlint.asc
 gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
@@ -136,14 +136,14 @@ $ ktlint --install-git-pre-commit-hook</code></pre>
             &lt;configuration&gt;
             &lt;target name=&quot;ktlint&quot;&gt;
                 &lt;java taskname=&quot;ktlint&quot; dir=&quot;${basedir}&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;
-                    classname=&quot;com.github.shyiko.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
+                    classname=&quot;com.pinterest.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
                     &lt;arg value=&quot;src/**/*.kt&quot;/&gt;
                     &lt;!-- to generate report in checkstyle format prepend following args: --&gt;
                     &lt;!-- 
                     &lt;arg value=&quot;--reporter=plain&quot;/&gt;
                     &lt;arg value=&quot;--reporter=checkstyle,output=${project.build.directory}/ktlint.xml&quot;/&gt;
                     --&gt;
-                    &lt;!-- see https://github.com/shyiko/ktlint#usage for more --&gt;    
+                    &lt;!-- see https://github.com/pinterest/ktlint#usage for more --&gt;
                 &lt;/java&gt;
             &lt;/target&gt;
             &lt;/configuration&gt;
@@ -154,7 +154,7 @@ $ ktlint --install-git-pre-commit-hook</code></pre>
             &lt;configuration&gt;
             &lt;target name=&quot;ktlint&quot;&gt;
                 &lt;java taskname=&quot;ktlint&quot; dir=&quot;${basedir}&quot; fork=&quot;true&quot; failonerror=&quot;true&quot;
-                    classname=&quot;com.github.shyiko.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
+                    classname=&quot;com.pinterest.ktlint.Main&quot; classpathref=&quot;maven.plugin.classpath&quot;&gt;
                     &lt;arg value=&quot;-F&quot;/&gt;
                     &lt;arg value=&quot;src/**/*.kt&quot;/&gt;
                 &lt;/java&gt;
@@ -165,7 +165,7 @@ $ ktlint --install-git-pre-commit-hook</code></pre>
     &lt;/executions&gt;
     &lt;dependencies&gt;
         &lt;dependency&gt;
-            &lt;groupId&gt;com.github.shyiko&lt;/groupId&gt;
+            &lt;groupId&gt;com.pinterest&lt;/groupId&gt;
             &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
             &lt;version&gt;0.31.0&lt;/version&gt;
         &lt;/dependency&gt;
@@ -207,7 +207,7 @@ configurations {
 }
 
 dependencies {
-    ktlint &quot;com.github.shyiko:ktlint:0.31.0&quot;
+    ktlint &quot;com.pinterest:ktlint:0.31.0&quot;
     // additional 3rd party ruleset(s) can be specified here
     // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
     // ktlint will pick them up
@@ -215,18 +215,18 @@ dependencies {
 
 task ktlint(type: JavaExec, group: "verification") {
     description = "Check Kotlin code style."
-    main = &quot;com.github.shyiko.ktlint.Main&quot;
+    main = &quot;com.pinterest.ktlint.Main&quot;
     classpath = configurations.ktlint
     args &quot;src/**/*.kt&quot;
     // to generate report in checkstyle format prepend following args:
     // &quot;--reporter=plain&quot;, &quot;--reporter=checkstyle,output=${buildDir}/ktlint.xml&quot;
-    // see https://github.com/shyiko/ktlint#usage for more    
+    // see https://github.com/pinterest/ktlint#usage for more
 }
 check.dependsOn ktlint
 
 task ktlintFormat(type: JavaExec, group: "formatting") {
     description = "Fix Kotlin code style deviations."
-    main = &quot;com.github.shyiko.ktlint.Main&quot;
+    main = &quot;com.pinterest.ktlint.Main&quot;
     classpath = configurations.ktlint
     args &quot;-F&quot;, &quot;src/**/*.kt&quot;
 }</code></pre>
@@ -730,7 +730,7 @@ among <a href="http://checkstyle.sourceforge.net/checks.html">dozens of code sty
               <h2 id="faq-ruleset" class="faq-q mdl-typography--headline mdl-typography--subhead"><i class="material-icons faq-icon">fiber_manual_record</i><a class="faq-q--link" href="#faq-ruleset">Can I have my own rules on top of ktlint?</a></h2>
               <div class="faq-a">
               <p>Absolutely, "no configuration" doesn't mean "no extensibility". You can add your own ruleset(s) to discover potential bugs, check for anti-patterns, etc. 
-              <p>See <a href="https://github.com/shyiko/ktlint#creating-a-ruleset">Creating A Ruleset</a> on GitHub.
+              <p>See <a href="https://github.com/pinterest/ktlint#creating-a-ruleset">Creating A Ruleset</a> on GitHub.
               </div>
               
         <!-- faq/error-suppression  -->
@@ -738,7 +738,7 @@ among <a href="http://checkstyle.sourceforge.net/checks.html">dozens of code sty
               <h2 id="faq-error-suppression" class="faq-q mdl-typography--headline mdl-typography--subhead"><i class="material-icons faq-icon">fiber_manual_record</i><a class="faq-q--link" href="#faq-error-suppression">How do I suppress an error?</a></h2>
               <div class="faq-a">
               <p style="color: slategray;">
-              This is meant primarily as an escape latch for the rare cases when ktlint is not able to produce the correct result (please report any such instances using <a href="https://github.com/shyiko/ktlint/issues">GitHub Issues</a>).
+              This is meant primarily as an escape latch for the rare cases when ktlint is not able to produce the correct result (please report any such instances using <a href="https://github.com/pinterest/ktlint/issues">GitHub Issues</a>).
               <p>To disable a specific rule you'll need to turn on the verbose mode (ktlint --verbose ...). At the end of each line you'll see an error code. Use it as an argument for ktlint-disable directive (shown below).
                   <div class="snippet-code">
                     <pre><code class="language-kotlin">import package.* // ktlint-disable no-wildcard-imports
