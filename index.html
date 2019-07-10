@@ -193,7 +193,42 @@ $ mvn antrun:run@ktlint-format</code></pre>
 
               <h2 class="mdl-typography--headline mdl-typography--subhead">Integration</h2>
 
-              <p>Add the following snippet to build.gradle
+              <h2 class="mdl-typography--headline mdl-typography--subhead">Plugins (Recommended)</h2>
+
+                  <p>There are few community-driven plugins (in order of appearance):
+
+                  <ul class="mdl-list gradle-thirdparty-list">
+                      <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/jlleitschuh/ktlint-gradle">jlleitschuh/ktlint-gradle</a></span>
+                    <span class="mdl-list__item-sub-title">
+                      Gradle plugin that automatically creates check and format tasks for project Kotlin sources,
+supports different kotlin plugins and Gradle build caching.
+                    </span>
+                  </span>
+                      </li>
+                      <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/jeremymailen/kotlinter-gradle">jeremymailen/kotlinter-gradle</a></span>
+                    <span class="mdl-list__item-sub-title">
+                      Gradle plugin featuring incremental build support, file reports, .kt &amp; .kts source support.
+                    </span>
+                  </span>
+                      </li>
+                      <li class="mdl-list__item mdl-list__item--two-line">
+                  <span class="mdl-list__item-primary-content">
+                    <span><a href="https://github.com/diffplug/spotless/tree/master/plugin-gradle#applying-ktlint-to-kotlin-files">diffplug/spotless</a></span>
+                    <span class="mdl-list__item-sub-title">
+Spotless is not really a plugin, it's a standalone project that happens to have a built-in ktlint support.
+In addition to linting/formatting kotlin code it allows you to keep license headers, markdown documentation, etc. in check.
+                    </span>
+                  </span>
+                      </li>
+                  </ul>
+
+                  <h2 class="mdl-typography--headline mdl-typography--subhead">Without Plugins</h2>
+
+                  <p>Add the following snippet to build.gradle
 
                   <div class="snippet-code">
                     <pre><code class=" language-groovy">apply plugin: &quot;java&quot;
@@ -232,7 +267,7 @@ task ktlintFormat(type: JavaExec, group: "formatting") {
 }</code></pre>
                   </div>
 
-              <h2 class="mdl-typography--headline mdl-typography--subhead">Usage</h2>
+              <h4 class="mdl-typography--headline mdl-typography--subhead">Usage</h4>
 
                   <div class="snippet-code">
                     <pre><code class=" language-bash"># check code style (it's also bound to "gradle check")
@@ -241,39 +276,7 @@ $ gradle ktlint
   
 # fix code style deviations (runs built-in formatter)
 $ gradle ktlintFormat</code></pre>
-                  </div>                  
-
-              <h2 class="mdl-typography--headline mdl-typography--subhead">Alternatives</h2>
-              
-              <p>There are few community-driven plugins that you might find interesting:
-
-              <ul class="mdl-list gradle-thirdparty-list">
-                <li class="mdl-list__item mdl-list__item--two-line">
-                  <span class="mdl-list__item-primary-content">
-                    <span><a href="https://github.com/jlleitschuh/ktlint-gradle">jlleitschuh/ktlint-gradle</a></span>
-                    <span class="mdl-list__item-sub-title">
-                      The very first ktlint gradle plugin.
-                    </span>
-                  </span>
-                </li>
-                <li class="mdl-list__item mdl-list__item--two-line">
-                  <span class="mdl-list__item-primary-content">
-                    <span><a href="https://github.com/jeremymailen/kotlinter-gradle">jeremymailen/kotlinter-gradle</a></span>
-                    <span class="mdl-list__item-sub-title">
-                      Gradle plugin featuring incremental build support, file reports, .kt &amp; .kts source support, etc.
-                    </span>
-                  </span>
-                </li>
-                <li class="mdl-list__item mdl-list__item--two-line">
-                  <span class="mdl-list__item-primary-content">
-                    <span><a href="https://github.com/diffplug/spotless/tree/master/plugin-gradle#applying-ktlint-to-kotlin-files">diffplug/spotless</a></span>
-                    <span class="mdl-list__item-sub-title">
-Spotless is not really a plugin, it's a standalone project that happens to have a built-in ktlint support.
-In addition to linting/formatting kotlin code it allows you to keep license headers, markdown documentation, etc. in check.
-                    </span>
-                  </span>
-                </li>
-              </ul>  
+                  </div>
 
               </div>
             </div>
