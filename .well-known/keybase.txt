@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/ktlint
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://ktlint.github.io
+  * I am ktlint (https://keybase.io/ktlint) on keybase.
+  * I have a public key with fingerprint ADBC 987D 1A7B 91DB 6B0A  AA81 995E FBF4 A3D2 0BEB
+
+To do so, I am signing this object:
+
+{
+  "body": {
+    "key": {
+      "eldest_kid": "0101d4ef54529811aa5d3167fe027259dd3aa376f2e96e6b66cdc904b19de46265ff0a",
+      "fingerprint": "adbc987d1a7b91db6b0aaa81995efbf4a3d20beb",
+      "host": "keybase.io",
+      "key_id": "995efbf4a3d20beb",
+      "kid": "0101d4ef54529811aa5d3167fe027259dd3aa376f2e96e6b66cdc904b19de46265ff0a",
+      "uid": "a721b65b053a478f9f7a306beebaa319",
+      "username": "ktlint"
+    },
+    "service": {
+      "hostname": "ktlint.github.io",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 1
+  },
+  "ctime": 1600102195,
+  "expire_in": 157680000,
+  "prev": "cc054a257ec602cfcad53e5410357bffae8c1ea92bd90bf23bd7a284d0336b7f",
+  "seqno": 3,
+  "tag": "signature"
+}
+
+which yields the signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v2.1.13
+Comment: https://keybase.io/crypto
+
+yMM8AnicrVJ9TFVlHL4EeCfM+DL7GFfqUEg3xPN97rkutTET3HCiBipcju97znsu
+R+iey/0AHEP9o8gICTAVFgKa0BiyMklFAYMc8TGJ6UQgJBOIFXbFwaJsc51D9Udb
+f/b+8+79/Z7neZ/nt9/1Ff6GIL/qzD8WPrkZPOs30FXtNQhCHVWIQVU6gFkLsWy0
+dKEcCbk9QrYiYVYMJ3BCopHM0AzJWwgCAEaiCJaTEU5yJMNLEgUAxbEyiXgWsZBl
+RUnkcRoSvIRolmQZWcYBFofJisOOXE6X4vBoskCCIm/hJAJwkCckyEIcAGAheJ5B
+MpRpQEkkDhHUiFmqW2do5iBwo3hF1WraQ1iy9x/4/9m3d0kOcCQBWQbiDAVoziLz
+MgconIUIQU2G4HWgG7kc4G2ke/Xk6DGL4jCtlqeISB+rnuNf/Xi74snywr8SOV2q
+RxXVHK2b5fE43Vad7Tng1OH5CAp/CwlQcUjaJDVGHnK5FdWBWQkNKXoUXZlgcS04
+SfBMHIYKnIoLCYqOYDjWgmtH/wflaZKiiDM0IBkOiSxOirIIJIZCDE3gFMNBWQbI
+IhII8CSUeBzKJAUlDpAWWsIpioWcjOnRch0qZqU0m8CuSboVuwN4vC6EFXV3ZQQY
+/IIMywKf0jfMELQ89J+9CykINXSZX0s/tuUOuN+6kp0aHRFuTz7XcnSbNHg4c9ZY
+Y47ZM+H74WTzh5O/Pd9kSsy4tbVpaNiyL/3n3W+YasdubBeQVOL37fDpyc7IOd/0
+sbYHK1c1b9lZ27Jt3f35p8e3zz0MWfx6YuMv7WrbuksXovJvAGd9FJRVjrdiUcbK
+2DT/xiPj55J6hte8e3RDyvHLye0FwcC4w1d0KTx8cGv0Z+UztW+NuAyH6Ltefvr9
+M1c2SAslRnUq+qLx4Rpf5PplV232L2o3bdq19stHHZxrpo88EtRjC2gG75jJojcH
+jOXdjoPRA4kfYfvPL54kuie+23WWTms+XleV9vowFlrGk76hsJn+gHPZVQ0l9fHX
+uUehYbnXLAmFpqjUEws1/u0xcnEEt/ZwyqoP7i08fuHEfOneyhUCTKhs3DldHNBv
+na+dc9t6K7LrO9OTvm8zdw4YYFjpod0vT/edGbXl27/aO8axgYt9Fb2bzSG3/Ss+
+Lq8yjVVbehv6np3pvxw78ePnbfvvNqWM+iVcTDSZv9lnXZ/cmrpcuCLUDHXcayx7
+kPJkdcxIxqk9z6h1NQHvrYalgzdfmv01ItbQEWHrzNuRFpQabXrlye8jQ8kvTjkH
+XcPFmQ1Xz3rbkmxeXyQ9dP70nU+xyMyyU4E9FzL7U8bo3Jbyx0mpwYkbfWLOq20/
+xbdeu3Uwe7w4/E+EFMTo
+=ZDDw
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/ktlint
+
+==================================================================
