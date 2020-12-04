@@ -80,13 +80,13 @@
               <h2 class="mdl-typography--headline mdl-typography--subhead">Installation</h2>
 
                   <div class="snippet-code">
-                    <pre><code class=" language-bash">curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.40.0-SNAPSHOT/ktlint &amp;&amp; chmod a+x ktlint
+                    <pre><code class=" language-bash">curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.40.0/ktlint &amp;&amp; chmod a+x ktlint
 # you can also download ktlint manually from https://github.com/pinterest/ktlint/releases
 # another option is "brew install ktlint"
 
 # verify PGP signature (optional but recommended)
 curl -sS https://keybase.io/ktlint/pgp_keys.asc | gpg --import
-curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.40.0-SNAPSHOT/ktlint.asc
+curl -sSLO https://github.com/pinterest/ktlint/releases/download/0.40.0/ktlint.asc
 gpg --verify ktlint.asc</code></pre>
                   </div>                  
 
@@ -167,7 +167,7 @@ $ ktlint --install-git-pre-commit-hook</code></pre>
         &lt;dependency&gt;
             &lt;groupId&gt;com.pinterest&lt;/groupId&gt;
             &lt;artifactId&gt;ktlint&lt;/artifactId&gt;
-            &lt;version&gt;0.40.0-SNAPSHOT&lt;/version&gt;
+            &lt;version&gt;0.40.0&lt;/version&gt;
         &lt;/dependency&gt;
         &lt;!-- additional 3rd party ruleset(s) can be specified here --&gt;
     &lt;/dependencies&gt;
@@ -242,7 +242,7 @@ configurations {
 }
 
 dependencies {
-    ktlint &quot;com.pinterest:ktlint:0.40.0-SNAPSHOT&quot;
+    ktlint &quot;com.pinterest:ktlint:0.40.0&quot;
     // additional 3rd party ruleset(s) can be specified here
     // just add them to the classpath (ktlint 'groupId:artifactId:version') and 
     // ktlint will pick them up
