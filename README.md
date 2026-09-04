@@ -1,3 +1,3 @@
 # ktlint.github.io
 
-Deprecated. Please see https://github.com/pinterest/ktlint/tree/master/docs
+Deprecated. See https://ktlint.github.io/ktlint/latest/ for documentation about Ktlint Core.
